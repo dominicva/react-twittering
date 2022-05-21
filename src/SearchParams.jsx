@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import User from './User';
-import Tweet from './Tweet';
+import Results from './Results';
 
 const CATEGORIES = ['retweets', 'mentions', 'hashtags', 'contains'];
 
@@ -8,7 +7,7 @@ const SearchParams = () => {
   const [username, setUsername] = useState('balajis');
   const [category, setCategory] = useState('');
   const [maxResults, setMaxResults] = useState(10);
-  const [{ tweets, user }, setData] = useState({ tweets: [], user: {} });
+  const [{ user, tweets }, setData] = useState({ user: {}, tweets: [] });
 
   useEffect(() => {
     getData();
@@ -100,26 +99,7 @@ const SearchParams = () => {
         </button>
       </form>
 
-      <User
-        key={user.id}
-        name={user.name}
-        username={user.username}
-        location={user.location}
-      />
-      <section>
-        <ul>
-          {tweets.map(t => {
-            const {
-              id,
-              text,
-              created_at: createdAt,
-              public_metrics: publicMetrics,
-            } = t;
-
-            return <Tweet key={id} {...{ text, createdAt, publicMetrics }} />;
-          })}
-        </ul>
-      </section>
+      <Results user={user} tweets={tweets} />
     </div>
   );
 };

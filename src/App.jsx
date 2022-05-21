@@ -1,12 +1,15 @@
 import { createRoot } from 'react-dom/client';
+import { StrictMode } from 'react';
 import SearchParams from './SearchParams';
 
 function App() {
   return (
-    <div id="app">
-      <h1>Tweet Hacker</h1>
-      <SearchParams />
-    </div>
+    <StrictMode>
+      <div id="app">
+        <h1>Tweet Hacker</h1>
+        <SearchParams />
+      </div>
+    </StrictMode>
   );
 }
 

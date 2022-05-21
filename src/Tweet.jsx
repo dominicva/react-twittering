@@ -8,7 +8,6 @@ const Tweet = ({
     retweet_count: reTweets,
   },
 }) => {
-  console.log(typeof createdAt);
   return (
     <li className="tweet-card">
       <blockquote>{text}</blockquote>
@@ -17,7 +16,7 @@ const Tweet = ({
         <li>Likes: {likes}</li>
         <li>Quoted {quoteCount} times</li>
         <li>{replies} replies</li>
-        <li>{reTweets} reTweets</li>
+        <li>{reTweets} retweets</li>
       </ul>
     </li>
   );
