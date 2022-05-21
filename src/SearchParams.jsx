@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+// import jsFetch from '@notthedom/js-fetch';
+import User from './User';
 
 const CATEGORIES = ['retweets', 'mentions', 'hashtags', 'contains'];
 
@@ -6,10 +8,31 @@ const SearchParams = () => {
   const [username, setUsername] = useState('balajis');
   const [category, setCategory] = useState('');
   const [maxResults, setMaxResults] = useState(10);
+  const [tweets, setTweets] = useState([]);
+  const [userData, setUserData] = useState({});
+
+  const getData = async () => {
+    const data = await fetch(
+      `http://localhost:3001/api/tweets/${username}`
+    ).then(r => r.json());
+    // console.log('data', data);
+
+    setTweets(data.tweets);
+    setUserData(data.user);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    getData();
+  }
 
   return (
     <div className="search-params">
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="username">
           Twitter username {username}
           <br />
@@ -63,8 +86,26 @@ const SearchParams = () => {
         </label>
         <br />
         <br />
-        <button style={{ padding: '0.5rem 1rem' }}>Get tweets</button>
+        <button type="submit" style={{ padding: '0.5rem 1rem' }}>
+          Get tweets
+        </button>
       </form>
+
+      <User
+        key={userData.id}
+        name={userData.name}
+        username={userData.username}
+        location={userData.location}
+      />
+      <ul>
+        {tweets.map(t => {
+          return (
+            <li style={{ padding: '1rem 2rem' }} key={t.id}>
+              {t.text}
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 };

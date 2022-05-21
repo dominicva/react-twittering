@@ -1,4 +1,4 @@
-const Tweet = ({ name, username, location }) => {
+const User = ({ name, username, location }) => {
   return (
     <div>
       <h1>{name}</h1>
@@ -8,4 +8,4 @@ const Tweet = ({ name, username, location }) => {
   );
 };
 
-export default Tweet;
+export default User;

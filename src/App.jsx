@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import Tweet from './Tweet';
+import User from './User';
 import SearchParams from './SearchParams';
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
     <div>
       <h1>Tweet Hacker</h1>
       <SearchParams />
-      <Tweet name="Dominic" username="domvana" location="Tulum, Mexico" />
+      <User name="Dominic" username="domvana" location="Tulum, Mexico" />
     </div>
   );
 }
