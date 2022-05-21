@@ -8,22 +8,27 @@ const SearchParams = () => {
   const [username, setUsername] = useState('balajis');
   const [category, setCategory] = useState('');
   const [maxResults, setMaxResults] = useState(10);
-  const [tweets, setTweets] = useState([]);
-  const [userData, setUserData] = useState({});
-
-  const getData = async () => {
-    const data = await fetch(
-      `http://localhost:3001/api/tweets/${username}`
-    ).then(r => r.json());
-    console.log('data', data);
-
-    setTweets(data.tweets);
-    setUserData(data.user);
-  };
+  const [{ tweets, user }, setData] = useState({ tweets: [], user: {} });
 
   useEffect(() => {
     getData();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  async function getData() {
+    const alreadyInLocalStorage = window.localStorage.getItem(username);
+    console.log('alreadyInLocalStorage:', alreadyInLocalStorage);
+
+    if (alreadyInLocalStorage) {
+      setData(JSON.parse(alreadyInLocalStorage));
+    } else {
+      const apiResponse = await fetch(
+        `http://localhost:3001/api/tweets/${username}`
+      ).then(r => r.json());
+      console.log('apiResponse', apiResponse);
+      setData(apiResponse);
+      window.localStorage.setItem(username, JSON.stringify(apiResponse));
+    }
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -92,10 +97,10 @@ const SearchParams = () => {
       </form>
 
       <User
-        key={userData.id}
-        name={userData.name}
-        username={userData.username}
-        location={userData.location}
+        key={user.id}
+        name={user.name}
+        username={user.username}
+        location={user.location}
       />
       <ul>
         {tweets.map(t => {
