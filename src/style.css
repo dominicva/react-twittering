@@ -1,13 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap');
 
+:root {
+  --theme-white: rgba(255, 255, 255, 0.8);
+  --theme-border: rgba(255, 255, 255, 0.5);
+  --theme-dark-gray: #1a202c;
+}
 * {
   box-sizing: border-box;
 }
 
 body {
-  background-color: #1a202c;
-  color: rgba(255, 255, 255, 0.8);
+  background-color: var(--theme-dark-gray);
+  color: var(--theme-white);
   font-family: roboto, sans-serif;
+  margin: 0;
 }
 
 ol,
@@ -17,13 +23,32 @@ ul {
 }
 
 li {
-  padding: 2rem;
+  padding: 0.25rem 0;
 }
 
 select {
   padding: 0.25rem 0.75rem;
 }
 
+blockquote {
+  margin: 0;
+}
+
+#root {
+  padding: 1rem;
+}
+
 #username {
   padding: 0.5rem;
+}
+
+.tweet-card {
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 0.25px solid var(--theme-border);
+  border-radius: 0.25rem;
+}
+
+.tweet-card > * {
+  margin-bottom: 1rem;
 }

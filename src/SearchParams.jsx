@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-// import jsFetch from '@notthedom/js-fetch';
 import User from './User';
+import Tweet from './Tweet';
 
 const CATEGORIES = ['retweets', 'mentions', 'hashtags', 'contains'];
 
@@ -16,16 +16,20 @@ const SearchParams = () => {
 
   async function getData() {
     const alreadyInLocalStorage = window.localStorage.getItem(username);
-    console.log('alreadyInLocalStorage:', alreadyInLocalStorage);
 
     if (alreadyInLocalStorage) {
+      console.log('Getting data from local storage...');
+
       setData(JSON.parse(alreadyInLocalStorage));
     } else {
+      console.log('Fetching data from the API...');
+
       const apiResponse = await fetch(
         `http://localhost:3001/api/tweets/${username}`
       ).then(r => r.json());
-      console.log('apiResponse', apiResponse);
+
       setData(apiResponse);
+
       window.localStorage.setItem(username, JSON.stringify(apiResponse));
     }
   }
@@ -102,11 +106,20 @@ const SearchParams = () => {
         username={user.username}
         location={user.location}
       />
-      <ul>
-        {tweets.map(t => {
-          return <li key={t.id}>{t.text}</li>;
-        })}
-      </ul>
+      <section>
+        <ul>
+          {tweets.map(t => {
+            const {
+              id,
+              text,
+              created_at: createdAt,
+              public_metrics: publicMetrics,
+            } = t;
+
+            return <Tweet key={id} {...{ text, createdAt, publicMetrics }} />;
+          })}
+        </ul>
+      </section>
     </div>
   );
 };

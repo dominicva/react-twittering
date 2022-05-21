@@ -3,7 +3,7 @@ const User = ({ name, username, location }) => {
     <div>
       <h1>{name}</h1>
       <h2>@{username}</h2>
-      <p>Location: {location}</p>
+      {location && <p>Location: {location}</p>}
     </div>
   );
 };
