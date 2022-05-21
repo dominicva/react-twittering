@@ -1,13 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap');
+
 * {
   box-sizing: border-box;
 }
 
-html,
 body {
   background-color: #1a202c;
-  color: rgba(255, 255, 255, 0.92);
-  font-family: -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu,
-    Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: roboto, sans-serif;
+}
+
+ol,
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 2rem;
 }
 
 select {

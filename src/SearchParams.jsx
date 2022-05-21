@@ -15,7 +15,7 @@ const SearchParams = () => {
     const data = await fetch(
       `http://localhost:3001/api/tweets/${username}`
     ).then(r => r.json());
-    // console.log('data', data);
+    console.log('data', data);
 
     setTweets(data.tweets);
     setUserData(data.user);
@@ -99,11 +99,7 @@ const SearchParams = () => {
       />
       <ul>
         {tweets.map(t => {
-          return (
-            <li style={{ padding: '1rem 2rem' }} key={t.id}>
-              {t.text}
-            </li>
-          );
+          return <li key={t.id}>{t.text}</li>;
         })}
       </ul>
     </div>

@@ -1,13 +1,11 @@
 import { createRoot } from 'react-dom/client';
-import User from './User';
 import SearchParams from './SearchParams';
 
 function App() {
   return (
-    <div>
+    <div id="app">
       <h1>Tweet Hacker</h1>
       <SearchParams />
-      <User name="Dominic" username="domvana" location="Tulum, Mexico" />
     </div>
   );
 }
