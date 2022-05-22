@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Results from './Results';
 
 const CATEGORIES = ['retweets', 'mentions', 'hashtags', 'contains'];
 
 const SearchParams = () => {
-  const [username, setUsername] = useState('balajis');
+  const [username, setUsername] = useState('coinbase');
   const [category, setCategory] = useState('');
   const [maxResults, setMaxResults] = useState(10);
   const [{ user, tweets }, setData] = useState({ user: {}, tweets: [] });
@@ -43,7 +43,6 @@ const SearchParams = () => {
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">
           Twitter username {username}
-          <br />
           <input
             id="username"
             type="text"
@@ -51,11 +50,9 @@ const SearchParams = () => {
             onChange={e => setUsername(e.target.value)}
           />
         </label>
-        <br />
-        <br />
+
         <label htmlFor="category">
           Search by {category}
-          <br />
           <select
             id="category"
             type="text"
@@ -75,8 +72,7 @@ const SearchParams = () => {
             ))}
           </select>
         </label>
-        <br />
-        <br />
+
         <label htmlFor="max-results">
           Max results {maxResults}
           <br />
@@ -92,11 +88,8 @@ const SearchParams = () => {
             }}
           />
         </label>
-        <br />
-        <br />
-        <button type="submit" style={{ padding: '0.5rem 1rem' }}>
-          Get tweets
-        </button>
+
+        <button type="submit">Get tweets</button>
       </form>
 
       <Results user={user} tweets={tweets} />

@@ -10,6 +10,7 @@ const Results = ({ user, tweets }) => {
           name={user.name}
           username={user.username}
           location={user.location}
+          avatarUrl={user.profile_image_url}
         />
       ) : (
         <h1>User not found...</h1>

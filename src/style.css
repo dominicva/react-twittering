@@ -26,6 +26,11 @@ li {
   padding: 0.25rem 0;
 }
 
+button:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
 select {
   padding: 0.25rem 0.75rem;
 }
@@ -34,12 +39,41 @@ blockquote {
   margin: 0;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  opacity: 0.87;
+  box-shadow: 1px 3px rgba(255, 255, 255, 0.1);
+}
+
 #root {
   padding: 1rem;
 }
 
 #username {
   padding: 0.5rem;
+}
+
+.card {
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 0.25px solid var(--theme-border);
+  border-radius: 0.25rem;
+}
+
+.user-card {
+  display: block;
+  margin-top: 4rem;
+  max-width: 24rem;
+}
+
+.avatar {
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
 }
 
 .tweet-card {
