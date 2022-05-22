@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import Results from './Results';
 
 const CATEGORIES = ['retweets', 'mentions', 'hashtags', 'contains'];
@@ -39,61 +39,63 @@ const SearchParams = () => {
   }
 
   return (
-    <div className="search-params">
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="username">
-          Twitter username {username}
-          <input
-            id="username"
-            type="text"
-            value={username}
-            onChange={e => setUsername(e.target.value)}
-          />
-        </label>
+    <main>
+      <div className="search-params">
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="username">
+            Twitter username {username}
+            <input
+              id="username"
+              type="text"
+              value={username}
+              onChange={e => setUsername(e.target.value)}
+            />
+          </label>
 
-        <label htmlFor="category">
-          Search by {category}
-          <select
-            id="category"
-            type="text"
-            value={category}
-            onChange={e => {
-              setCategory(e.target.value);
-            }}
-            onBlur={e => {
-              setCategory(e.target.value);
-            }}
-          >
-            <option />
-            {CATEGORIES.map(c => (
-              <option key={c} value={c}>
-                {c}
-              </option>
-            ))}
-          </select>
-        </label>
+          <label htmlFor="category">
+            Search by {category}
+            <select
+              id="category"
+              type="text"
+              value={category}
+              onChange={e => {
+                setCategory(e.target.value);
+              }}
+              onBlur={e => {
+                setCategory(e.target.value);
+              }}
+            >
+              <option />
+              {CATEGORIES.map(c => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
+            </select>
+          </label>
 
-        <label htmlFor="max-results">
-          Max results {maxResults}
-          <br />
-          <input
-            id="max-results"
-            type="number"
-            value={maxResults}
-            onChange={e => {
-              setMaxResults(e.target.value);
-            }}
-            onBlur={e => {
-              setMaxResults(e.target.value);
-            }}
-          />
-        </label>
+          <label htmlFor="max-results">
+            Max results {maxResults}
+            <br />
+            <input
+              id="max-results"
+              type="number"
+              value={maxResults}
+              onChange={e => {
+                setMaxResults(e.target.value);
+              }}
+              onBlur={e => {
+                setMaxResults(e.target.value);
+              }}
+            />
+          </label>
 
-        <button type="submit">Get tweets</button>
-      </form>
+          <button type="submit">Get tweets</button>
+        </form>
 
-      <Results user={user} tweets={tweets} />
-    </div>
+        <Results user={user} tweets={tweets} />
+      </div>
+    </main>
   );
 };
 
