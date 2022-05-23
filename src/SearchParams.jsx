@@ -1,12 +1,8 @@
 import { useState, useEffect } from 'react';
 import Results from './Results';
 
-const CATEGORIES = ['retweets', 'mentions', 'hashtags', 'contains'];
-
 const SearchParams = () => {
   const [username, setUsername] = useState('coinbase');
-  const [category, setCategory] = useState('');
-  const [maxResults, setMaxResults] = useState(10);
   const [{ user, tweets }, setData] = useState({ user: {}, tweets: [] });
 
   useEffect(() => {
@@ -27,6 +23,8 @@ const SearchParams = () => {
         `http://localhost:3001/api/tweets/${username}`
       ).then(r => r.json());
 
+      console.log('data:', apiResponse);
+
       setData(apiResponse);
 
       window.localStorage.setItem(username, JSON.stringify(apiResponse));
@@ -43,16 +41,30 @@ const SearchParams = () => {
       <div className="search-params">
         <form onSubmit={handleSubmit}>
           <label htmlFor="username">
-            Twitter username {username}
+            <span>Twitter username</span>
             <input
               id="username"
               type="text"
               value={username}
               onChange={e => setUsername(e.target.value)}
             />
+            <span id="preview-search-param">
+              {username ? `@${username}` : ''}
+            </span>
           </label>
 
-          <label htmlFor="category">
+          <button type="submit">Lookup @{username ? username : ' ...'}</button>
+        </form>
+
+        <Results user={user} tweets={tweets} />
+      </div>
+    </main>
+  );
+};
+
+export default SearchParams;
+
+/* <label htmlFor="category">
             Search by {category}
             <select
               id="category"
@@ -89,14 +101,4 @@ const SearchParams = () => {
               }}
             />
           </label>
-
-          <button type="submit">Get tweets</button>
-        </form>
-
-        <Results user={user} tweets={tweets} />
-      </div>
-    </main>
-  );
-};
-
-export default SearchParams;
+          */
