@@ -52,8 +52,8 @@ a {
 }
 
 a:hover {
-  opacity: 0.87;
-  box-shadow: 1px 3px rgba(255, 255, 255, 0.1);
+  opacity: 0.8;
+  /* box-shadow: 1px 3px rgba(255, 255, 255, 0.1); */
 }
 
 #root {
@@ -97,6 +97,12 @@ a:hover {
   display: block;
   margin-top: 4rem;
   max-width: 24rem;
+}
+
+.user-card a {
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
 }
 
 .avatar {

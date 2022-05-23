@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import User from './User';
 import Tweet from './Tweet';
 
 const Results = ({ user, tweets }) => {
+  const [showTweets, setShowTweets] = useState(false);
+
   return (
     <section>
       {Object.values(user).length > 0 ? (
@@ -11,13 +14,16 @@ const Results = ({ user, tweets }) => {
           username={user.username}
           location={user.location}
           avatarUrl={user.profile_image_url}
+          description={user.description}
+          publicMetrics={user.public_metrics}
+          handleClick={() => setShowTweets(!showTweets)}
         />
       ) : (
         <h1>User not found...</h1>
       )}
 
       <div>
-        {tweets.length > 0 ? (
+        {tweets.length > 0 && showTweets && (
           <ul>
             {tweets.map(t => {
               const {
@@ -30,8 +36,6 @@ const Results = ({ user, tweets }) => {
               return <Tweet key={id} {...{ text, createdAt, publicMetrics }} />;
             })}
           </ul>
-        ) : (
-          <h1>No tweets found</h1>
         )}
       </div>
     </section>
